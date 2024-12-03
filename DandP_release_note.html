@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+</head>
+<body>
+    <div id="gist-content">Loading magic...</div>
+    <script>
+        fetch("https://gist.githubusercontent.com/RaksM92/a84061dc3f517439ce77ab9c366c7c7f/raw")
+            .then((response) => response.text())
+            .then((mdText) => {
+                const converter = new showdown.Converter();
+                const htmlContent = converter.makeHtml(mdText);
+                document.getElementById("gist-content").innerHTML = htmlContent;
+            })
+            .catch((error) => console.error("Failed to fetch the Gist:", error));
+    </script>
+</body>
+</html>
